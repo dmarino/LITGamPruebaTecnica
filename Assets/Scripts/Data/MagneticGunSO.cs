@@ -12,16 +12,14 @@ public class MagneticGunSO : BaseGunSO
     public float MagneticMinDistance;
     public float MagneticRange;
     public float MagneticForce;
-
-    public override void Shoot(Transform muzzle, Transform camera)
+    public override GameObject InstanciateProjectile(Transform muzzle)
     {
+        //setting the info of the projectile
         MagneticProjectile projectile = Instantiate(projectilePrefab, muzzle.position, muzzle.rotation);
         projectile._magneticRadius = MagneticRange;
         projectile._magneticForce = MagneticForce;
         projectile._magneticMinDistance = MagneticMinDistance;
 
-        Vector3 direction = camera.transform.forward.normalized + _shootingForce;
-        projectile.GetComponent<Rigidbody>().AddRelativeForce(direction);
-        Destroy(projectile.gameObject, _proyectileLifeSpan);
+        return projectile.gameObject;
     }
 }

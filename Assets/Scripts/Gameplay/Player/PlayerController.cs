@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+//this is the class where i handle all inputs from the player 
+
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(GunPickUpController))]
 public class PlayerController : MonoBehaviour

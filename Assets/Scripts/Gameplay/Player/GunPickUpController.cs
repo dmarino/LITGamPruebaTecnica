@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
+//this class manages all gun info of the player
 // i could have done this in the player controller 
 //but i think this way is more organized
 public class GunPickUpController : MonoBehaviour
@@ -16,6 +17,10 @@ public class GunPickUpController : MonoBehaviour
     private DefaultGun _closestGun;
     private DefaultGun _currentGun;
 
+
+    //i actually don't like doing this on the update but the poin of 
+    //this label was to show when the gun reloaded and that occurs in a courutine
+    //i would prefer to use events next time
     private void Update()
     {
         if(_ammoLabel==null) return;
@@ -36,8 +41,10 @@ public class GunPickUpController : MonoBehaviour
         DefaultGun closest = null;
         float closestDistance = _pickUpDistance;
 
+        //for all guns created in the scene
         foreach (DefaultGun gun in DefaultGun.GunList)
         {
+            //if they can be a target (player is looking in that direction they are in range)
             if (IsGunATarget(gun) == true)
             {
                 float distanceToGun = Vector3.Distance(transform.position, gun.transform.position);
@@ -86,6 +93,8 @@ public class GunPickUpController : MonoBehaviour
 
         return false;
     }
+
+    //pick the gun
     public void PickUp()
     {
         //if i already have a gun i won't pick up another until i drop this one
@@ -98,6 +107,7 @@ public class GunPickUpController : MonoBehaviour
         
     }
 
+    //drop the gun
     public void Drop()
     {
         if(_currentGun==null) return;
@@ -108,7 +118,7 @@ public class GunPickUpController : MonoBehaviour
         _ammoLabel.text = "";
     }
 
-
+    //shoot the current gun
     public void Shoot(Transform camera)
     {
         if(_currentGun==null) return;

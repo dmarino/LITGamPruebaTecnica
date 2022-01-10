@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Gun Database", menuName ="Gun System/Guns/Database")]
 public class GunsDatabaseSO : ScriptableObject
 {
-    public BaseGunSO[] guns; //the array of guns
+    public BaseGunSO[] guns; //stores the array of guns
 }

@@ -20,9 +20,10 @@ public class BubbleProjectile : DefaultProjectile
 
     protected override void OnCollisionEnter(Collision other)
     {
+        //there is defenitly a better way to handle this exceptions
         if (other.gameObject.layer != LayerMask.NameToLayer("Terrain") && other.gameObject.tag != "Player" && other.gameObject.tag != "projectile")
         {
-
+            //i ignore this collition so the thing doesn't move because of the bullet
             Physics.IgnoreCollision(other.collider, _collider);
 
             //set bubble info

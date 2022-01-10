@@ -21,7 +21,6 @@ public class DefaultGun : MonoBehaviour
     [SerializeField] private Transform _shootingPoint;
 
     [Header("Audio")]
-
     [SerializeField] AudioSource _shootSound;
     [SerializeField] AudioSource _reloadSound;
 
@@ -30,7 +29,6 @@ public class DefaultGun : MonoBehaviour
     private Collider _collider;
 
     private int _bulletsLeft;
-
     private bool _reloading;
 
     private void Awake()
@@ -43,6 +41,7 @@ public class DefaultGun : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
+
         _bulletsLeft = GunSO._magazineSize;
         _nameLabel.text = GunSO.gunName;
     }
@@ -52,11 +51,26 @@ public class DefaultGun : MonoBehaviour
 
         if (_bulletsLeft > 0)
         {
+            //play Sound
             _shootSound.Play();
-            GunSO.Shoot(_shootingPoint, camera);
+
+            //instanciate projectile, i decided to do it on the Scriptable Object
+            //because every gun has a different way to do it so instead of doing a 
+            //switch here or creating more DefaultGuns and doing a double bind with SO and MonoBehavoiurs
+            //i can just do it there
+            GameObject projectile = GunSO.InstanciateProjectile(_shootingPoint);
+
+            //adding force to the projectile
+            Vector3 direction = camera.transform.forward.normalized + GunSO._shootingForce;
+            projectile.GetComponent<Rigidbody>().AddRelativeForce(direction);
+
+            //destroy projectile after lifespan ended
+            Destroy(projectile, GunSO._proyectileLifeSpan);
+
             _bulletsLeft--;
 
-            if(_bulletsLeft==0 && _reloading==false)
+            //if i got no bullets left reload
+            if (_bulletsLeft == 0 && _reloading == false)
             {
                 StartCoroutine(Reload());
             }
@@ -64,6 +78,7 @@ public class DefaultGun : MonoBehaviour
 
     }
 
+    //reloads gun
     private IEnumerator Reload()
     {
         _reloading = true;
@@ -74,17 +89,19 @@ public class DefaultGun : MonoBehaviour
 
     }
 
+    //shows UI feedback
     public void Target()
     {
         _tagertFeedBack.SetActive(true);
     }
 
-
+    //hides ui feedback
     public void UnTarget()
     {
         _tagertFeedBack.SetActive(false);
     }
 
+    //picks up the gun
     public void PickUp(Transform parent)
     {
         transform.SetParent(parent);
@@ -97,6 +114,7 @@ public class DefaultGun : MonoBehaviour
         UnTarget();
     }
 
+    //drops the gun
     public void Drop()
     {
         transform.SetParent(null);
@@ -104,6 +122,7 @@ public class DefaultGun : MonoBehaviour
         _collider.isTrigger = false;
     }
 
+    //gives ammoleft/totalAmmo in string
     public string GiveAmmoFeedback()
     {
         return $"{_bulletsLeft}/{GunSO._magazineSize}";

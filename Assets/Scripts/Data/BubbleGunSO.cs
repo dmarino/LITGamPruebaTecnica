@@ -12,15 +12,13 @@ public class BubbleGunSO : BaseGunSO
     public float bubbleUpForce;
     public int bubbleTimer;
 
-    public override void Shoot(Transform muzzle, Transform camera)
+    public override GameObject InstanciateProjectile(Transform muzzle)
     {
+        //setting the info of the projectile
         BubbleProjectile projectile = Instantiate(projectilePrefab, muzzle.position, muzzle.rotation);
         projectile._bubbleTime = bubbleTimer;
         projectile._bubbleForce = bubbleUpForce;
 
-        Vector3 direction = camera.transform.forward.normalized + _shootingForce;
-        projectile.GetComponent<Rigidbody>().AddRelativeForce(direction);
-
-        Destroy(projectile.gameObject, _proyectileLifeSpan);
+        return projectile.gameObject;
     }
 }
