@@ -5,6 +5,13 @@
 - Date: <09/01/2022>
 
 ------------
+This is a little example of a FPS using unity, there are three guns in the scene
+
+- A projectile Gun that shoots in a parabolic trajectory
+- A magnetic Gun that attracts objects to the projectile
+- A bubble Gun that encapsulates objects in a bubble for certain amount of time
+
+------------
 
 You can play with a game controller or with mouse and keyboard
 
@@ -25,3 +32,13 @@ You can play with a game controller or with mouse and keyboard
 - Quit = ESC
 
 -----------
+Caveeats and errors: 
+
+- The camera is a little wonky with the mouse, with more time i would've smooth it out with a lerp
+- I didn't like the information i stored in the Scriptable objects, i didn't know if i had to store the projectile info too but i think that made my code a little dirty
+
+-----------
+
+Other Thoughts: I hope i'ts okay i used other assets aside from the ones you guys gave me.
+
+
