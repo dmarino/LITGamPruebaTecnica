@@ -66,24 +66,24 @@ public class PlayerController : MonoBehaviour
         var max = _camera.transform.localEulerAngles.x < 270 ? 89 : 360;
         _camera.transform.localEulerAngles = new Vector3(Mathf.Clamp(_camera.transform.localEulerAngles.x, min, max), 0f, 0f);
 
-        _detectedRotation = Vector2.zero;
-
     }
 
     public void OnCameraMove(InputAction.CallbackContext context)
     {
+        _detectedRotation = context.ReadValue<Vector2>();
+
         if (context.performed)
         {
-            _detectedRotation = context.ReadValue<Vector2>();
             _pickUpController.UpdateClosestGun();
         }
+        
     }
 
     public void OnPlayerMove(InputAction.CallbackContext context)
     {
         _detectedMovement = context.ReadValue<Vector2>();
 
-        if(context.performed)
+        if (context.performed)
         {
             _pickUpController.UpdateClosestGun();
         }
@@ -108,9 +108,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnShootPressed(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
-            _pickUpController.Shoot();
+            _pickUpController.Shoot(_camera.transform);
         }
     }
 

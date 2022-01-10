@@ -17,5 +17,5 @@ public abstract class BaseGunSO : ScriptableObject
     [Header("Projectile Info")]
 
     [Range(2,10)] [SerializeField] protected int _proyectileLifeSpan;
-    public abstract void Shoot(Transform pos);
+    public abstract void Shoot(Transform muzzle, Transform camera);
 }

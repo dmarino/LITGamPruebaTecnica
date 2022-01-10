@@ -47,13 +47,13 @@ public class DefaultGun : MonoBehaviour
         _nameLabel.text = GunSO.gunName;
     }
 
-    public void Shoot()
+    public void Shoot(Transform camera)
     {
 
         if (_bulletsLeft > 0)
         {
             _shootSound.Play();
-            GunSO.Shoot(_shootingPoint);
+            GunSO.Shoot(_shootingPoint, camera);
             _bulletsLeft--;
 
             if(_bulletsLeft==0 && _reloading==false)

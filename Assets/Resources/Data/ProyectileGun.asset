@@ -19,4 +19,4 @@ MonoBehaviour:
   _cooldownTime: 2
   _magazineSize: 5
   _proyectileLifeSpan: 2
-  proyectilePrefab: {fileID: 7867526370551746556, guid: d97e4a57e50e88340a9e59a11f279e27, type: 3}
+  projectilePrefab: {fileID: 7867526370551746556, guid: d97e4a57e50e88340a9e59a11f279e27, type: 3}

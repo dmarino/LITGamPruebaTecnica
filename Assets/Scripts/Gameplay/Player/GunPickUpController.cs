@@ -109,10 +109,10 @@ public class GunPickUpController : MonoBehaviour
     }
 
 
-    public void Shoot()
+    public void Shoot(Transform camera)
     {
         if(_currentGun==null) return;
 
-        _currentGun.Shoot();
+        _currentGun.Shoot(camera);
     }
 }

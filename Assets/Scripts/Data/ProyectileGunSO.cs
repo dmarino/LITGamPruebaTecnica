@@ -4,12 +4,13 @@ using UnityEngine;
 public class ProyectileGunSO : BaseGunSO
 {
 
-    public DefaultProjectile proyectilePrefab;
-    public override void Shoot(Transform pos)
+    public DefaultProjectile projectilePrefab;
+    public override void Shoot(Transform muzzle, Transform camera)
     {
-        DefaultProjectile proyectile = Instantiate(proyectilePrefab, pos.position, pos.rotation);
-        proyectile.GetComponent<Rigidbody>().AddRelativeForce(_shootingForce);
+        DefaultProjectile projectile = Instantiate(projectilePrefab, muzzle.position, muzzle.rotation);
+        Vector3 direction = camera.transform.forward.normalized + _shootingForce;
+        projectile.GetComponent<Rigidbody>().AddRelativeForce(direction);
 
-        Destroy(proyectile.gameObject, _proyectileLifeSpan);
+        Destroy(projectile.gameObject, _proyectileLifeSpan);
     }
 }
