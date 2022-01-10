@@ -8,20 +8,20 @@
 
 You can play with a game controller or with mouse and keyboard
 
-Controller:
-Player Movement = left joystick
-Camera Movement = right joystick
-PickUp Gun = (X or Square)
-Drop Gun = (B or circle)
-Shoot = Right Trigger
+## Controller:
+- Player Movement = left joystick
+- Camera Movement = right joystick
+- PickUp Gun = (X or Square)
+- Drop Gun = (B or circle)
+- Shoot = Right Trigger
 
-Mouse and Keyboard
-Player Movement = WASD or Key Arrows
-Camera Movement = mouse 
-PickUp Gun = E
-Drop Gun = Q
-Shoot = Left Click
+## Mouse and Keyboard
+- Player Movement = WASD or Key Arrows
+- Camera Movement = mouse 
+- PickUp Gun = E
+- Drop Gun = Q
+- Shoot = Left Click
 
-Quit = ESC
+- Quit = ESC
 
 -----------
