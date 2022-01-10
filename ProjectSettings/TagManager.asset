@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - magnetic
+  - projectile
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Magnetic
   - Bubble
   - Terrain
-  - 
+  - Projectile
   - 
   - 
   - 

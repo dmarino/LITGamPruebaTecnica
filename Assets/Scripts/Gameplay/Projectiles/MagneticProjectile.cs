@@ -38,19 +38,23 @@ public class MagneticProjectile : DefaultProjectile
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    protected override void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "magnetic")
         {
             Physics.IgnoreCollision(other.collider, _collider);
         }
+        else
+        {
+            base.OnCollisionEnter(other);
+        }
     }
 
 
-    //testing code
-    /*void OnDrawGizmosSelected()
+    //testing the overlap sphere
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _magneticRadius);
-    }*/
+    }
 }

@@ -20,5 +20,6 @@ MonoBehaviour:
   _magazineSize: 1
   _proyectileLifeSpan: 10
   projectilePrefab: {fileID: 6751365248315527921, guid: 5723dabee652c514b9b6ac0e526f5562, type: 3}
+  MagneticMinDistance: 1
   MagneticRange: 3
   MagneticForce: 40

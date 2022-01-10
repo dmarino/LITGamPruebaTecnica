@@ -21,7 +21,7 @@ public class GunLoader : MonoBehaviour
         foreach (BaseGunSO gun in database.guns)
         {
             DefaultGun defaultGun = Instantiate(gun.gunPrefab, gun.spawnPosition, Quaternion.identity);
-            defaultGun.gunSO = gun;
+            defaultGun.GunSO = gun;
         }
     }
    

@@ -18,9 +18,9 @@ public class BubbleProjectile : DefaultProjectile
         _collider = GetComponent<Collider>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    protected override void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Terrain") && other.gameObject.tag != "Player")
+        if (other.gameObject.layer != LayerMask.NameToLayer("Terrain") && other.gameObject.tag != "Player" && other.gameObject.tag != "projectile")
         {
 
             Physics.IgnoreCollision(other.collider, _collider);

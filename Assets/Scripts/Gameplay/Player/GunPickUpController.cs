@@ -36,7 +36,7 @@ public class GunPickUpController : MonoBehaviour
         DefaultGun closest = null;
         float closestDistance = _pickUpDistance;
 
-        foreach (DefaultGun gun in DefaultGun.gunList)
+        foreach (DefaultGun gun in DefaultGun.GunList)
         {
             if (IsGunATarget(gun) == true)
             {

@@ -9,14 +9,21 @@ using UnityEngine;
 public class DefaultGun : MonoBehaviour
 {
     //this is so i can store all guns easily
-    public static List<DefaultGun> gunList = new List<DefaultGun>();
+    public static List<DefaultGun> GunList = new List<DefaultGun>();
 
-    [HideInInspector] public BaseGunSO gunSO; //is public cause this is set with the loader, if i could drag the SO then it wouldn´t be hid
+    [HideInInspector] public BaseGunSO GunSO; //is public cause this is set with the loader, if i could drag the SO then it wouldn´t be hid
 
+    [Header("UI feedback")]
     [SerializeField] private GameObject _tagertFeedBack;
-
     [SerializeField] private TextMeshProUGUI _nameLabel;
+
+    [Header("Shooting")]
     [SerializeField] private Transform _shootingPoint;
+
+    [Header("Audio")]
+
+    [SerializeField] AudioSource _shootSound;
+    [SerializeField] AudioSource _reloadSound;
 
 
     private Rigidbody _rigidBody;
@@ -24,9 +31,11 @@ public class DefaultGun : MonoBehaviour
 
     private int _bulletsLeft;
 
+    private bool _reloading;
+
     private void Awake()
     {
-        gunList.Add(this);
+        GunList.Add(this);
         _tagertFeedBack.SetActive(false);
     }
 
@@ -34,8 +43,8 @@ public class DefaultGun : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
-        _bulletsLeft = gunSO._magazineSize;
-        _nameLabel.text = gunSO.gunName;
+        _bulletsLeft = GunSO._magazineSize;
+        _nameLabel.text = GunSO.gunName;
     }
 
     public void Shoot()
@@ -43,20 +52,25 @@ public class DefaultGun : MonoBehaviour
 
         if (_bulletsLeft > 0)
         {
-            gunSO.Shoot(_shootingPoint);
+            _shootSound.Play();
+            GunSO.Shoot(_shootingPoint);
             _bulletsLeft--;
-        }
-        else
-        {
-            StartCoroutine(Reload());
+
+            if(_bulletsLeft==0 && _reloading==false)
+            {
+                StartCoroutine(Reload());
+            }
         }
 
     }
 
     private IEnumerator Reload()
     {
-        yield return new WaitForSeconds(gunSO._cooldownTime);
-        _bulletsLeft = gunSO._magazineSize;
+        _reloading = true;
+        yield return new WaitForSeconds(GunSO._cooldownTime);
+        _bulletsLeft = GunSO._magazineSize;
+        _reloadSound.Play();
+        _reloading = false;
 
     }
 
@@ -92,6 +106,6 @@ public class DefaultGun : MonoBehaviour
 
     public string GiveAmmoFeedback()
     {
-        return $"{_bulletsLeft}/{gunSO._magazineSize}";
+        return $"{_bulletsLeft}/{GunSO._magazineSize}";
     }
 }

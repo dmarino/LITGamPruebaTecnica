@@ -113,4 +113,9 @@ public class PlayerController : MonoBehaviour
             _pickUpController.Shoot();
         }
     }
+
+    public void OnQuit(InputAction.CallbackContext context)
+    {
+        Application.Quit();
+    }
 }
