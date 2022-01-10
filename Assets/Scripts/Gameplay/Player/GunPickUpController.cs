@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 // i could have done this in the player controller 
@@ -10,8 +11,22 @@ public class GunPickUpController : MonoBehaviour
 
     [SerializeField] private Transform gunPosition;
 
+    [SerializeField] private TextMeshProUGUI _ammoLabel;
+
     private DefaultGun _closestGun;
     private DefaultGun _currentGun;
+
+    private void Update()
+    {
+        if(_ammoLabel==null) return;
+
+        _ammoLabel.text = "";
+        if(_currentGun!=null)
+        {
+            _ammoLabel.text = _currentGun.GiveAmmoFeedback();
+        }
+        
+    }
 
     public void UpdateClosestGun()
     {
@@ -60,7 +75,7 @@ public class GunPickUpController : MonoBehaviour
                 //if there is nothing in between
                 RaycastHit hit;
                 Physics.Raycast(transform.position, gun.transform.position - transform.position, out hit, distanceToGun);
-                if (hit.collider.gameObject == gun.gameObject)
+                if (hit.collider && hit.collider.gameObject == gun.gameObject)
                 {
                     return true;
 
@@ -79,6 +94,8 @@ public class GunPickUpController : MonoBehaviour
 
         _currentGun = _closestGun;
         _currentGun.PickUp(gunPosition);
+
+        
     }
 
     public void Drop()
@@ -87,11 +104,15 @@ public class GunPickUpController : MonoBehaviour
 
         _currentGun.Drop();
         _currentGun = null;
+
+        _ammoLabel.text = "";
     }
 
 
     public void Shoot()
     {
-        throw new NotImplementedException();
+        if(_currentGun==null) return;
+
+        _currentGun.Shoot();
     }
 }

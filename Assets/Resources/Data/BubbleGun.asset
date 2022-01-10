@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f705eb6e77b05144a5fba7c289dcf7f, type: 3}
   m_Name: BubbleGun
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1489553814459157829, guid: 165f57ecb3d36b841abade50a28cc0eb, type: 3}
+  gunName: Bubble Gun
+  gunPrefab: {fileID: 1171304319315523957, guid: 83d602e8e19d9f7449519c6f7de48614, type: 3}
   spawnPosition: {x: 4.28, y: 1, z: 0}
-  Force: 4
+  _shootingForce: {x: 500, y: 0, z: 0}
+  _cooldownTime: 2
+  _magazineSize: 15
+  _proyectileLifeSpan: 5
+  projectilePrefab: {fileID: 2345303280419455464, guid: 2c1f0f8677a03044e91c3a6da5d0e0dc, type: 3}
+  bubbleUpForce: 0.15
+  bubbleTimer: 6

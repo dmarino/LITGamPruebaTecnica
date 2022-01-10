@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e5dd3df1f4f594cbe9a924ea1aa41d, type: 3}
   m_Name: ProyectileGun
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1489553814459157829, guid: 165f57ecb3d36b841abade50a28cc0eb, type: 3}
+  gunName: Projectile Gun
+  gunPrefab: {fileID: 2394435039275235513, guid: e68ebac63958711488050bd6b4f59534, type: 3}
   spawnPosition: {x: 4.28, y: 1, z: -1.26}
-  Force: 10
+  _shootingForce: {x: 400, y: 200, z: 0}
+  _cooldownTime: 2
+  _magazineSize: 5
+  _proyectileLifeSpan: 2
+  proyectilePrefab: {fileID: 7867526370551746556, guid: d97e4a57e50e88340a9e59a11f279e27, type: 3}
